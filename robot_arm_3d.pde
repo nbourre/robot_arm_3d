@@ -8,17 +8,22 @@ void setup(){
   size(800, 600, P3D);
   
   arm = new Segment();
+  arm.setLimits(-HALF_PI, 0);
   arm.attachChild(new Segment());
+  arm.child.len = arm.len * .75;
 }
 
 void draw(){
   background(0);
   lights();
-  translate (width / 2, height / 2, 100);
+  
+  // Centrer la scène
+  translate (width / 2, height / 2, 0);
+  
   arm.azimut += PI / 180.0;
   
   if (btnLeftActive) {
-    arm.angle = map (mouseY, 0, height, -HALF_PI, HALF_PI);
+    arm.setAngle(map(mouseY, 0, height, -HALF_PI, HALF_PI));
   }
   
   if (btnRightActive) {

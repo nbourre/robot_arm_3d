@@ -7,6 +7,9 @@ class Segment {
   float thickness = 10;
   float sizeRatio = 1;
   
+  float lowerLimit = 0;
+  float upperLimit = TWO_PI;
+  
   Segment child;
   
   Segment () {
@@ -22,6 +25,24 @@ class Segment {
     location.x = x;
     location.y = y;
     location.z = z;
+  }
+  
+  void setAngle(float angle) {
+    
+    this.angle = angle;
+    
+    if (this.angle < lowerLimit) {
+      this.angle = lowerLimit;
+    }
+    
+    if (this.angle > upperLimit) {
+      this.angle = upperLimit;
+    }
+  }
+  
+  void setLimits (float lower, float upper) {
+    lowerLimit = lower;
+    upperLimit = upper;
   }
   
   void update(float deltaTime) {
